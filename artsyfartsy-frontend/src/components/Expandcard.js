@@ -6,14 +6,12 @@ class Expandcard extends React.Component {
 
   render() {
     return (
-      <Draggable disabled={true}>
-          <span className="explorecard" onClick={() => this.props.handleClick(this.props.card)} className='explorecard'>
+          <div className="explorecard" onClick={() => this.props.handleClick(this.props.card)} className='explorecard'>
           <img src={this.props.card.primaryImage} alt='' />
             <p>
               {this.props.card.artistDisplayName}
             </p>
-          </span>
-        </Draggable>
+          </div>
     );
   }
 

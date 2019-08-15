@@ -63,3 +63,7 @@ img {
   height: 70vh;
   background-color: whitesmoke;
 }
+
+span img:hover{
+  cursor: move;
+}
