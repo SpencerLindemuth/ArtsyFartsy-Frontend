@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar'
 import Gallery from './components/Gallery'
 import Expand from './components/Expand'
+import Draggable, {DraggableCore} from 'react-draggable';
 
 
 class App extends React.Component {
