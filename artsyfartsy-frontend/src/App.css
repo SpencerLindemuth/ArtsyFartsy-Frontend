@@ -36,3 +36,13 @@
   height: 150px;
   background-color: #524D4A;
 }
+
+.explore {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(2);
+}
+.explorecard {
+  height: 10%;
+  background-color: whitesmoke;
+}
