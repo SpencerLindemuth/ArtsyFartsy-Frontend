@@ -12,10 +12,12 @@ class Gallery extends React.Component {
 
   render() {
     return(
-      <div>
-        {this.props.myPic.map(pic => {
-          return <Expandcard card={pic} key={pic.id} handleClick={this.props.handleClick} />
-        })}
+      <div id="galleryBackground">
+        <div className="galleryWall">
+          {this.props.myPic.map(pic => {
+            return <Expandcard card={pic} key={pic.id} handleClick={this.props.handleClick} />
+          })}
+        </div>
       </div>
     )
   }

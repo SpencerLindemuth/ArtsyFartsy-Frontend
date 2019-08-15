@@ -47,6 +47,11 @@ img {
   grid-template-rows: repeat(2);
 }
 .explorecard {
-  height: 10%;
-  background-color: whitesmoke;
+  height: 100%;
+}
+
+.galleryWall {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: auto;
 }
