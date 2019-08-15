@@ -57,6 +57,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar />
         <Gallery handleClick={this.removeFromGallery} myPic={this.state.top}/>
+        <hr></hr>
         <Expand handleClick={this.addToGallery} expand={this.state.expand} />
       </div>
     )
