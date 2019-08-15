@@ -1,4 +1,5 @@
 import React from 'react'
+import Expandcard from './Expandcard'
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class Gallery extends React.Component {
   render() {
     return(
       <div>
-        <img src={this.props.imageSrc} alt=''/>
+        {this.props.myPic.map(pic => {
+          return <Expandcard card={pic} key={pic.id} handleClick={this.props.handleClick} />
+        })}
       </div>
     )
   }

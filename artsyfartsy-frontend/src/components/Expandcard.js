@@ -5,7 +5,7 @@ class Expandcard extends React.Component {
 
   render() {
     return (
-      <div className='explorecard'>
+      <div onClick={() => this.props.handleClick(this.props.card)} className='explorecard'>
         <img src={this.props.card.primaryImage} alt='' />
         <p>
           {this.props.card.artistDisplayName}
