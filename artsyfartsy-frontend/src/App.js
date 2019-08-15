@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar'
 import Gallery from './components/Gallery'
+import Expand from './components/Expand'
 
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
   }
   
   loadImage = () => {
-    return fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/436535').then(res => res.json()).then(data => {
+    fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/436535').then(res => res.json()).then(data => {
       let ten = []
       for (let index = 0; index < 8; index++) {
         const element = data;
@@ -33,6 +34,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar />
         <Gallery imageSrc={this.state.imageSrc}/>
+        <Expand expand={this.state.expand}/>
       </div>
     )
   }
