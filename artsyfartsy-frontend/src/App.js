@@ -33,13 +33,19 @@ class App extends React.Component {
   }
 
   addToGallery = (card) => {
-    let pieces = this.state.expand.filter((piece) => {
-      return piece !== card
-    })
-    this.setState({
-      top: [...this.state.top, card],
-      expand: [...pieces]
-    })
+
+    if (this.state.top.length <6) {
+      let pieces = this.state.expand.filter((piece) => {
+        return piece !== card
+      })
+      this.setState({
+        top: [...this.state.top, card],
+        expand: [...pieces]
+      })
+    } else {
+      console.log('You have enough Old Masters.')
+    }
+
   }
 
   removeFromGallery = (card) => {

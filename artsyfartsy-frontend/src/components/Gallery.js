@@ -16,7 +16,8 @@ class Gallery extends React.Component {
         <div className="galleryWall">
           {this.props.myPic.map(pic => {
             return <Expandcard card={pic} key={pic.id} handleClick={this.props.handleClick} />
-          })}
+          }
+          )}
         </div>
       </div>
     )
