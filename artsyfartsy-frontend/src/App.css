@@ -37,7 +37,7 @@ img {
 }
 
 .navbar {
-  height: 150px;
+  height: 10vh;
   background-color: #524D4A;
 }
 
@@ -50,8 +50,16 @@ img {
   height: 100%;
 }
 
+#galleryBackground{
+  height: 75vh;
+}
 .galleryWall {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  grid-template-rows: auto;
+  grid-template-columns: (1,1fr);
+  grid-template-rows: (1,1fr);
+  margin-top: 3%;
+  margin-left: 4%;
+  margin-right: 4%;
+  height: 70vh;
+  background-color: whitesmoke;
 }

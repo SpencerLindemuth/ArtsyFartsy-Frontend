@@ -1,5 +1,5 @@
 import React from 'react'
-import Expandcard from './Expandcard'
+import Gallerycard from './Gallerycard'
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class Gallery extends React.Component {
   render() {
     return(
       <div id="galleryBackground">
-        <div className="galleryWall">
+        <div class="galleryWall">
           {this.props.myPic.map(pic => {
-            return <Expandcard card={pic} key={pic.id} handleClick={this.props.handleClick} />
+            return <Gallerycard card={pic} key={pic.id} handleClick={() => null} />
           })}
         </div>
       </div>
