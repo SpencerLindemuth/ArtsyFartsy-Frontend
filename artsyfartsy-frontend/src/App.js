@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar'
 import Gallery from './components/Gallery'
@@ -10,15 +9,18 @@ import Draggable, {DraggableCore} from 'react-draggable';
 class App extends React.Component {
   state = {
     imageSrc: '',
-    expand: []
+    expand: [],
+    top: []
   }
   
   loadImage = () => {
-    fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/436535').then(res => res.json()).then(data => {
+    fetch('http://localhost:3000/pieces').then(res => res.json()).then(data => {
       let ten = []
-      for (let index = 0; index < 8; index++) {
-        const element = data;
-        ten.push(element)
+      for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+          if (element.primaryImage !== "" && ten.length < 8 ) {
+            ten.push(element)
+          } 
       }
       this.setState({
         expand: [...ten]
@@ -30,12 +32,32 @@ class App extends React.Component {
     this.loadImage()
   }
 
+  addToGallery = (card) => {
+    let pieces = this.state.expand.filter((piece) => {
+      return piece !== card
+    })
+    this.setState({
+      top: [...this.state.top, card],
+      expand: [...pieces]
+    })
+  }
+
+  removeFromGallery = (card) => {
+    let pieces = this.state.top.filter((piece) => {
+      return piece !== card
+    })
+    this.setState({
+      expand: [...this.state.expand, card],
+      top: [...pieces]
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Navbar />
-        <Gallery imageSrc={this.state.imageSrc}/>
-        <Expand expand={this.state.expand}/>
+        <Gallery handleClick={this.removeFromGallery} myPic={this.state.top}/>
+        <Expand handleClick={this.addToGallery} expand={this.state.expand} />
       </div>
     )
   }
