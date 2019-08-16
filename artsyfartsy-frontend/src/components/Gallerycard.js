@@ -19,20 +19,25 @@ class Gallerycard extends React.Component {
   saveCoords = (ev) => {
     let element = ev.target
     let rect = element.getBoundingClientRect();
+    let wall = document.querySelector(".galleryWall")
+    let box = wall.getBoundingClientRect()
+    let offLeft = box.x + window.scrollX
+    let offTop = box.y + window.scrollY
+    console.log(offLeft)
     this.setState=({
-        xCord: rect.right,
-        yCord: rect.bottom
+        xCord: rect.x + window.scrollX - offLeft,
+        yCord: rect.y + window.scrollY - offTop
     })
-    localStorage.setItem(`xCord${this.props.card.id}`, rect.right)
+    localStorage.setItem(`xCord${this.props.card.id}`, (rect.x + window.scrollX - offLeft))
     console.log(`xCord${this.props.card.id}`, rect.left)
-    localStorage.setItem(`yCord${this.props.card.id}`, rect.bottom)
+    localStorage.setItem(`yCord${this.props.card.id}`, (rect.y + window.scrollY - offTop))
     console.log(`yCord${this.props.card.id}`, rect.top)
   }
 
   render() {
     return (
       <Draggable grid={[5,5]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}}>
-          <img src={this.props.card.primaryImage} alt='' draggable="false"/>
+          <img src={this.props.card.primaryImage} alt='' draggable="false" id={this.props.card.id}/>
         </Draggable>
     );
   }

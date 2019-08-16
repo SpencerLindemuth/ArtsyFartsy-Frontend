@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');
 
 *{
   font-family: 'Libre Caslon Display', serif;
@@ -6,6 +8,7 @@
 
 .App {
   text-align: center;
+  background-color: white;
 }
 
 .App-logo {
@@ -41,7 +44,7 @@
 .navbar {
   width: 100vw;
   height: auto;
-  background-color: #524D4A;
+  background-color: #3C3744;
   text-align: end;
 }
 
@@ -51,6 +54,7 @@
   padding-left: 1%;
   padding-right: 1%;
   font-size: calc(32px + 2vmin);
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 .explore {
@@ -65,7 +69,7 @@
 }
 .explorecard {
   vertical-align: 20%;
-  background-color: whitesmoke;
+  background-color: #F0F0F0;
   border-radius: 10px;
   max-width: 80%;
   padding-right: 2%;
@@ -75,11 +79,12 @@
 }
 
 #exploreArtist {
-  font-size: calc(10px + 2vmin)
+  font-size: calc(14px + 2vmin)
 }
 
 #exploreTitle{
-  font-size: calc(7px + 2vmin)
+  font-size: calc(3px + 2vmin);
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 .explorecard img{
@@ -88,6 +93,7 @@
 }
 
 #galleryBackground{
+  text-align: left;
   height: 75vh;
 }
 .galleryWall {
@@ -95,7 +101,7 @@
   margin-left: 4%;
   margin-right: 4%;
   height: 70vh;
-  background-color: whitesmoke;
+  background-color: #F0F0F0;
 }
 
 .galleryWall img{
