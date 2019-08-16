@@ -2,11 +2,15 @@ import React from 'react'
 import Draggable, {DraggableCore} from 'react-draggable';
 
 class Gallerycard extends React.Component {
-  state = {
-      elementId: 0,
-      xCord: 0,
-      yCord: 0
-  }
+    constructor(props){
+        super(props)
+        this.state = {
+            elementId: props.card.id,
+            xCord: localStorage.getItem(`xCord${props.card.id}`)? parseInt(localStorage.getItem(`xCord${props.card.id}`)):100,
+            yCord: localStorage.getItem(`yCord${props.card.id}`)? parseInt(localStorage.getItem(`yCord${props.card.id}`)):100
+        }
+    }
+  
 
   setCoords = (ev) => {
     
@@ -16,24 +20,18 @@ class Gallerycard extends React.Component {
     let element = ev.target
     let rect = element.getBoundingClientRect();
     this.setState=({
-        xCord: rect.left,
-        yCord: rect.top
+        xCord: rect.right,
+        yCord: rect.bottom
     })
-    localStorage.setItem(`xCord${this.props.card.id}`, rect.left)
-    localStorage.setItem(`yCord${this.props.card.id}`, rect.top)
-  }
-
-  componentWillMount = () => {
-      if(localStorage.getItem(`xCord${this.props.card.id}`) && localStorage.getItem(`yCord${this.props.card.id}`)){
-       this.setState({xCord: localStorage.getItem('xCord'), yCord: localStorage.getItem('yCord')})
-      }else{
-          this.setState({xCord: 100, yCord: 100})
-      }
+    localStorage.setItem(`xCord${this.props.card.id}`, rect.right)
+    console.log(`xCord${this.props.card.id}`, rect.left)
+    localStorage.setItem(`yCord${this.props.card.id}`, rect.bottom)
+    console.log(`yCord${this.props.card.id}`, rect.top)
   }
 
   render() {
     return (
-      <Draggable grid={[1,1]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}} bounds={"parent"}>
+      <Draggable grid={[5,5]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}}>
           <img src={this.props.card.primaryImage} alt='' draggable="false"/>
         </Draggable>
     );
