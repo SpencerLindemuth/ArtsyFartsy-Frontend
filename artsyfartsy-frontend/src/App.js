@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar'
 import Gallery from './components/Gallery'
 import Expand from './components/Expand'
-import Draggable, {DraggableCore} from 'react-draggable';
+import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -61,10 +61,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <Gallery handleClick={this.removeFromGallery} myPic={this.state.top}/>
-        <hr></hr>
-        <Expand handleClick={this.addToGallery} expand={this.state.expand} />
+        <Router>
+          <Navbar />
+          <Route exact path="/" component={Gallery} />
+          {/* <Gallery handleClick={this.removeFromGallery} myPic={this.state.top}/>
+          <hr></hr>
+          <Expand handleClick={this.addToGallery} expand={this.state.expand} /> */}
+        </Router>
       </div>
     )
   }
