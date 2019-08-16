@@ -13,7 +13,7 @@ class Gallery extends React.Component {
   render() {
     return(
       <div id="galleryBackground">
-        <div class="galleryWall">
+        <div className="galleryWall">
           {this.props.myPic.map(pic => {
             return <Gallerycard card={pic} key={pic.id} handleClick={() => null} />
           })}
