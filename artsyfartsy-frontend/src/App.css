@@ -93,6 +93,9 @@
 }
 
 #galleryBackground{
+  background-image: url(./images/galleryFloor.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: left;
   height: 75vh;
 }
@@ -101,12 +104,12 @@
   margin-left: 4%;
   margin-right: 4%;
   height: 70vh;
-  background-color: #F0F0F0;
+  background-color: white;
 }
 
 .galleryWall img{
   position: absolute;
-  max-height: 30vh;
+  max-width: 30vh;
 }
 
 .galleryWall img:hover{
