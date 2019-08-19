@@ -7,7 +7,8 @@ class Gallery extends React.Component {
   state = {
     imageSrc: '',
     expand: [],
-    top: []
+    top: [],
+    full50: []
   }
 
   getGallery(){
@@ -37,8 +38,10 @@ class Gallery extends React.Component {
           if (element.primaryImage !== "" && ten.length < 8 ) {
             ten.push(element)
           } 
+          data.shift()
       }
       this.setState({
+        full50: [...data],
         expand: [...ten]
       })
     })
@@ -57,7 +60,7 @@ class Gallery extends React.Component {
     let dupe = false
     let temp = this.state.top.filter(piece => piece.id !== card.id? piece : dupe=true)
     temp.push(card)
-    if (this.state.top.length < 6 && dupe === false) {
+    if (this.state.top.length < 12 && dupe === false) {
       let pieces = this.state.expand.filter((piece) => {
         return piece !== card
       })
@@ -89,6 +92,9 @@ class Gallery extends React.Component {
   
 
   render() {
+    if(this.state.expand.length < 8){
+      this.loadImage()
+    }
     return(
       <div className="page">
         <div id="galleryBackground">

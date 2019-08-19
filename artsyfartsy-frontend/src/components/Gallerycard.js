@@ -11,11 +11,6 @@ class Gallerycard extends React.Component {
             yCord: localStorage.getItem(`yCord${props.card.id}/${props.userId}`)? parseInt(localStorage.getItem(`yCord${props.card.id}/${props.userId}`)):0
         }
     }
-  
-
-  setCoords = (ev) => {
-    
-  }
 
   saveCoords = (ev) => {
     let element = ev.target
