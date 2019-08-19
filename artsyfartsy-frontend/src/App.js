@@ -6,13 +6,13 @@ import Gallery from './components/Gallery'
 import Expand from './components/Expand'
 import Collection from './components/Collection'
 import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
+import ShowImg from './components/ShowImage';
 
 
 class App extends React.Component {
   state = {
     imageSrc: '',
-    expand: [],
-    top: []
+    explore: []
   }
 
 
@@ -24,9 +24,13 @@ class App extends React.Component {
           <Route exact path='/' component={Homepage} />
           <Route exact path="/gallery" component={Gallery} />
           <Route exact path='/explore' component={Collection} />
+          <Route exact path="/piece/:id" component={ShowImg} />
         </Router>
       </div>
     )
+  }
+  componentDidMount() {
+
   }
 }
 
