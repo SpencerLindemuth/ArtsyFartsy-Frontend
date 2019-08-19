@@ -8,7 +8,6 @@ class Gallery extends React.Component {
     imageSrc: '',
     expand: [],
     top: [],
-    full50: []
   }
 
   getGallery(){
@@ -35,13 +34,12 @@ class Gallery extends React.Component {
       })
       for (let index = 0; index < temp.length; index++) {
         const element = temp[index];
-          if (element.primaryImage !== "" && ten.length < 8 ) {
+          if (element.primaryImage !== "") {
             ten.push(element)
           } 
           data.shift()
       }
       this.setState({
-        full50: [...data],
         expand: [...ten]
       })
     })
@@ -89,6 +87,10 @@ class Gallery extends React.Component {
       top: [...pieces]
     })
   }
+
+  showRemoveX(){
+    
+  }
   
 
   render() {
@@ -100,12 +102,12 @@ class Gallery extends React.Component {
         <div id="galleryBackground">
           <div className="galleryWall">
             {this.state.top.map(pic => {
-              return <Gallerycard card={pic} key={pic.id} userId={3} handleClick={() => null} />
+              return <Gallerycard card={pic} key={pic.id} userId={3} handleClick={() => null} removeCard={this.showRemoveX} />
             })}
           </div>
         </div>
         <hr></hr>
-        <Expand handleClick={this.addToGallery} expand={this.state.expand} />
+        <Expand handleClick={this.props.history.push} handleAddToGallery={this.addToGallery} expand={this.state.expand} />
       </div>
     )
   }
