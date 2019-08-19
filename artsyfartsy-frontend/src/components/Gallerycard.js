@@ -33,7 +33,7 @@ class Gallerycard extends React.Component {
     let rect = wall.getBoundingClientRect()
     return (
       <Draggable grid={[5,5]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}}>
-            <img src={this.props.card.primaryImage} alt='' draggable="false" id={this.props.card.id}/>
+            <img src={this.props.card.primaryImageSmall} alt='' draggable="false" id={this.props.card.id}/>
         </Draggable>
     );
   }
