@@ -6,10 +6,13 @@ class Expand extends React.Component {
 
   render() {
     return (
-      <div className='explore'>
-        {this.props.expand.map(card => {
-          return <Expandcard card={card} key={card.id} handleClick={this.props.handleClick}/>
-        })}
+      <div>
+        <p id="recommended">Pieces you might like...</p>
+        <div className='explore'>
+          {this.props.expand.map(card => {
+            return <Expandcard card={card} key={card.id} handleClick={this.props.handleClick}/>
+          })}
+        </div>
       </div>
     );
   }

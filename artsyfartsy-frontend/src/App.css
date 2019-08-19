@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');
 
 *{
   font-family: 'Libre Caslon Display', serif;
@@ -6,10 +8,7 @@
 
 .App {
   text-align: center;
-}
-
-img {
-  height: 200px;
+  background-color: white;
 }
 
 .App-logo {
@@ -43,28 +42,61 @@ img {
 }
 
 .navbar {
-  height: 10vh;
-  background-color: #524D4A;
+  width: 100vw;
+  height: auto;
+  background-color: #3C3744;
+  text-align: end;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-size: calc(32px + 2vmin);
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 .explore {
+  width: 100vw;
   display: grid;
+  overflow: scroll;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: repeat(2);
-  margin-left: 5%;
-  margin-right: 5%;
-  align-content: center;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  justify-content: center;
 }
 .explorecard {
-  height: 80%;
-  width: 80%;
+  vertical-align: 20%;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  max-width: 80%;
   padding-right: 2%;
   padding-left: 2%;
-  padding-bottom: 4%;
+  margin-bottom: 4vh;
   text-align: center;
 }
 
+#exploreArtist {
+  font-size: calc(14px + 2vmin)
+}
+
+#exploreTitle{
+  font-size: calc(3px + 2vmin);
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+.explorecard img{
+  padding-top: 8%;
+  max-width: 80%;
+}
+
 #galleryBackground{
+  background-image: url(./images/galleryFloor.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: left;
   height: 75vh;
 }
 .galleryWall {
@@ -72,13 +104,18 @@ img {
   margin-left: 4%;
   margin-right: 4%;
   height: 70vh;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .galleryWall img{
   position: absolute;
+  max-width: 30vh;
 }
 
 .galleryWall img:hover{
   cursor: move;
+}
+
+#recommended{
+  font-size: calc(28px + 2vmin)
 }
