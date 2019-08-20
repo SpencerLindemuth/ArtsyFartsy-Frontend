@@ -10,6 +10,7 @@ class Collection extends React.Component {
     highlights: false,
     artistName: ["Select an artist"],
     department: ["Select a department"],
+    classification: ["Select a classification"],
     keyword: ''
   }
   
@@ -127,6 +128,8 @@ class Collection extends React.Component {
           departmentIs={this.state.department}
           updateKeyword={this.handleKeywordChange}
           currentWord={this.state.keyword}
+          showClassification={this.handleClassificationChange}
+          classificationIs={this.state.classification}
           />
           <hr></hr>
           <div className='explore'>

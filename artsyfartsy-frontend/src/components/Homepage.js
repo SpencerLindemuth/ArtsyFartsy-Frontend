@@ -10,16 +10,7 @@ class Homepage extends React.Component {
   render() {
     return(
       <div>
-        <h1>Welcome to Artsy-Fartsy!</h1>
         <img src={Logo} alt='brilliant logo' />
-        <NavLink
-          to="/gallery"
-          exact
-        >Go to your gallery</NavLink>
-        <NavLink
-          to="/explore"
-          exact
-        >Explore our collection</NavLink>
       </div>
     )
   }
