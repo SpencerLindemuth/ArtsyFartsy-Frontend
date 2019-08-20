@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import Nationality from './Nationality'
 
 class Filterbar extends React.Component {
 
@@ -11,21 +12,35 @@ class Filterbar extends React.Component {
         </div>
         <div>
           <label>Filter by Selected Artists</label>
-          <select value={this.props.artistNameIs} onChange={this.props.showArtist}>
+          <select value={this.props.artistNameIs} onChange={this.props.showArtist} >
             <option value="Select an artist">View All</option>
+            <option value="Eugène Boudin">Eugène Boudin</option>
+            <option value="Caravaggio (Michelangelo Merisi)">Caravaggio - Michelangelo Merisi</option>
             <option value="Paul Cézanne">Paul Cézanne</option>
+            <option value="Edgar Degas">Edgar Degas</option>
             <option value="Paul Gauguin">Paul Gauguin</option>
-            <option value="Vincent van Gogh">Vincent van Gogh</option>
+            <option value="Giovanni di Paolo (Giovanni di Paolo di Grazia)">Giovanni di Paolo - Giovanni di Paolo di Grazia</option>
             <option value="Georges Seurat">Georges Seurat</option>
+            <option value="Henri de Toulouse-Lautrec">Henri de Toulouse-Lautrec</option>
+            <option value="Vincent van Gogh">Vincent van Gogh</option>
+            <option value="Francisco de Zurbarán">Francisco de Zurbarán</option>
           </select>
         </div>
         <div>
           <label>Filter by Department</label>
-          <select value={this.props.departmentIs} onChange={this.props.showDepartment}>
+          <select value={this.props.departmentIs} onChange={this.props.showDepartment} >
             <option value="Select a department">View All</option>
             <option value="European Paintings">European Paintings</option>
             <option value="The American Wing">The American Wing</option>
             <option value="Greek and Roman Art">Greek & Roman Art</option>
+          </select>
+        </div>
+        <div>
+          <label>Filter by Artist Nationality</label>
+          <select>
+          {this.props.artistNats.map((nationality) => {
+            return <Nationality nation={nationality} key={nationality}/>
+          })}
           </select>
         </div>
         <div>
