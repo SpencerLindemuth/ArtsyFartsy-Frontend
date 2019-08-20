@@ -4,9 +4,7 @@ class Nationality extends React.Component {
 
   render() {
     return (
-      <option
-        value={this.props.nation}>
-      </option>
+      <option value={this.props.nation}>{this.props.nation}</option>
     );
   }
 

@@ -37,10 +37,15 @@ class Filterbar extends React.Component {
         </div>
         <div>
           <label>Filter by Artist Nationality</label>
-          <select>
-          {this.props.artistNats.map((nationality) => {
-            return <Nationality nation={nationality} key={nationality}/>
-          })}
+          <select value={this.props.artistNatIs} onChange={this.props.showArtistNat}>
+            <option value="Select a nationality">View All</option>
+            <option value="French">French</option>
+            <option value="Italian">Italian</option>
+            <option value="British">British</option>            
+            <option value="Dutch">Dutch</option>            
+            <option value="German">German</option>            
+            <option value="Russian">Russian</option>
+            <option value="">Nationality not given</option>
           </select>
         </div>
         <div>
@@ -53,5 +58,3 @@ class Filterbar extends React.Component {
 }
 
 export default Filterbar
-
-

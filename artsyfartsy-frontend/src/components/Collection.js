@@ -10,6 +10,7 @@ class Collection extends React.Component {
     currentDepts: [],
     highlights: false,
     artistName: ["Select an artist"],
+    artistNationality: ["Select a nationality"],
     artistNats: [],
     department: ["Select a department"],
     keyword: ''
@@ -33,7 +34,6 @@ class Collection extends React.Component {
 
   componentDidMount() {
     this.loadImage()
-    this.getNationalities()
   }
 
   handleChangeHighlights = (ev) => {
@@ -129,16 +129,27 @@ class Collection extends React.Component {
     })
   }
 
-  getNationalities = () => {
-    let allNats = []
-    this.state.collection.forEach(piece => {
-      if (piece.artistNationality !== "" && !allNats.includes(piece.artistNationality)) {
-        allNats.push(piece.artistNationality)
-      }
-    })
-    this.setState({
-      artistNats: [...allNats]
-    })
+  handleNatChange = (ev) => {
+    let natVal = ev.target.value
+    this.setState({ artistNationality: ev.target.value })
+    this.updateNationality(natVal)
+  }
+
+  updateNationality = (natVal) => {
+    if (natVal === "Select a nationality") {
+      this.setState({
+        filteredCol: [...this.state.collection]
+      })
+    } else {
+      let filtered = this.state.collection.filter((piece) => {
+        return piece.artistNationality === natVal
+      })
+      this.setState({
+        filteredCol: [...filtered],
+        artistName: ["Select an artist"],
+        department: ["Select a department"]
+      })
+    }
   }
 
   render() {
@@ -147,6 +158,8 @@ class Collection extends React.Component {
         <div>
           <Filterbar 
           artistNats={this.state.artistNats}
+          showArtistNat={this.handleNatChange}
+          artistNatIs={this.state.artistNationality}
           showHighlights={this.handleChangeHighlights} 
           showArtist={this.handleChangeArtist} 
           artistNameIs={this.state.artistName}
