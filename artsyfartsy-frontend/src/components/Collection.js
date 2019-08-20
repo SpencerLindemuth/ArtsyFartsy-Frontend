@@ -7,8 +7,10 @@ class Collection extends React.Component {
   state = {
     collection: [],
     filteredCol: [],
+
     highlights: false,
     artistName: ["Select an artist"],
+    artistNationality: ["Select a nationality"],
     department: ["Select a department"],
     keyword: ''
   }
@@ -33,10 +35,16 @@ class Collection extends React.Component {
     this.loadImage()
   }
 
-  handleChangeHighlights = (ev) => {
+  handleChangeHighlights = () => {
     let highlightsVal = !this.state.highlights
     this.setState({highlights: !this.state.highlights})
     this.updateHighlights(highlightsVal)
+    this.setState({
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"],
+      keyword: ''
+    })
   }
 
   updateHighlights = (highlightsVal) => {
@@ -45,10 +53,12 @@ class Collection extends React.Component {
         return piece.isHighlight === true
       })
       this.setState({
-        filteredCol: [...filtered]
+        filteredCol: [...filtered],
       })
     } else {
-      this.setState({filteredCol: [...this.state.collection]})
+      this.setState({
+        filteredCol: [...this.state.collection],
+      })
     }
   }
 
@@ -56,6 +66,12 @@ class Collection extends React.Component {
     let artistNameVal = ev.target.value
     this.setState({artistName: ev.target.value})
     this.updateArtist(artistNameVal)
+    this.setState({
+      highlights: false,
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"],
+      keyword: ''
+    })
   }
 
   updateArtist = (artistNameVal) => {
@@ -68,7 +84,7 @@ class Collection extends React.Component {
         return piece.artistDisplayName === artistNameVal
       })
       this.setState({
-        filteredCol: [...filtered]
+        filteredCol: [...filtered],
       })
     }
   }
@@ -77,6 +93,12 @@ class Collection extends React.Component {
     let departmentVal = ev.target.value
     this.setState({department: ev.target.value})
     this.updateDepartment(departmentVal)
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      keyword: ''
+    })
   }
 
   updateDepartment = (departmentVal) => {
@@ -89,16 +111,21 @@ class Collection extends React.Component {
         return piece.department === departmentVal
       })
       this.setState({
-        filteredCol: [...filtered]
+        filteredCol: [...filtered],
       })
     }
   }
 
   handleKeywordChange = (ev) => {
-    let userInput = ev.target.value
+    let userInput = ev.target.value.toLowerCase()
     this.setState({keyword: ev.target.value})
     this.handleKeywordSearch(userInput)
-    
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"]
+    })
   }
 
   handleKeywordSearch = (userInput) => {
@@ -106,13 +133,42 @@ class Collection extends React.Component {
     let searchBase = this.state.collection
       for (let i = 0; i < searchBase.length; i++) {
         const piece = searchBase[i];
-        if (piece.tags.includes(userInput)){
+        if (piece.tags.toLowerCase().includes(userInput)){
           filtered.push(piece)
       }
     }
     this.setState({
-      filteredCol: [...filtered]
+      filteredCol: [...filtered],
+
     })
+  }
+
+  handleNatChange = (ev) => {
+    let natVal = ev.target.value
+    this.setState({ artistNationality: ev.target.value })
+    this.updateNationality(natVal)
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      department: ["Select a department"],
+      keyword: ''
+    })
+  }
+
+  updateNationality = (natVal) => {
+    if (natVal === "Select a nationality") {
+      this.setState({
+        filteredCol: [...this.state.collection]
+      })
+    } else {
+      let filtered = this.state.collection.filter((piece) => {
+        return piece.artistNationality === natVal
+      })
+      this.setState({
+        filteredCol: [...filtered],
+
+      })
+    }
   }
 
   render() {
@@ -120,6 +176,10 @@ class Collection extends React.Component {
       <div>  
         <div>
           <Filterbar 
+          highlightValue={this.state.highlights}
+          artistNats={this.state.artistNats}
+          showArtistNat={this.handleNatChange}
+          artistNatIs={this.state.artistNationality}
           showHighlights={this.handleChangeHighlights} 
           showArtist={this.handleChangeArtist} 
           artistNameIs={this.state.artistName}
@@ -131,7 +191,7 @@ class Collection extends React.Component {
           <hr></hr>
           <div className='explore'>
             {this.state.filteredCol.map(piece => {
-              return <Expandcard card={piece} key={piece.id} />
+              return <Expandcard card={piece} key={piece.id} handleClick={this.props.history.push} />
             })}
           </div>
         </div>
