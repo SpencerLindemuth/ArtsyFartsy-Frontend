@@ -8,7 +8,7 @@ function Navbar(props) {
       <Link to="/">Home</Link>
       <Link to="/gallery">Gallery</Link>
       <Link to="/explore">Explore</Link>
-      <Link to="/image/1">Show Page</Link>
+      <Link to="/piece/3900">Show Page</Link>
     </div>
   )
 }

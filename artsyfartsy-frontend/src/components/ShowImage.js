@@ -6,7 +6,8 @@ export default class ShowImg extends React.Component {
         this.params = props.match.params
         this.state = {
             piece: {},
-            inGallery: false
+            inGallery: false,
+            userGallery: []
         }
     }
 
@@ -25,6 +26,7 @@ export default class ShowImg extends React.Component {
         fetch(`http://localhost:3000/users/${3}/gallery`)
         .then(res => res.json())
         .then(data => {
+            this.setState({userGallery: [...data]})
             let temp = data.filter(item => {
                 return item.id === piece.id
             })
@@ -38,10 +40,10 @@ export default class ShowImg extends React.Component {
 
     handleAdd = () => {
         if(!this.state.inGallery){
-            this.props.handleAddToGallery(this.state.piece)
             this.setState({
                 inGallery: true
             })
+            this.addToGallery()
         }
         else{
             this.setState({
@@ -49,6 +51,20 @@ export default class ShowImg extends React.Component {
             })
         }
     }
+
+    addToGallery = () => {
+        if (this.state.userGallery.length < 12){
+          fetch("http://localhost:3000/users/add", {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify({user_id: 3, piece: this.state.piece})
+          })
+        //   .then(res => res.json())
+        //   .then(data => data.id ? console.log("added") : console.log("there was an error processing the request"))
+        } else {
+          console.log('You have enough Old Masters.')
+        }
+      }
 
 
     render(){
