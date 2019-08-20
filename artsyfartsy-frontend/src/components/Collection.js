@@ -7,11 +7,10 @@ class Collection extends React.Component {
   state = {
     collection: [],
     filteredCol: [],
-    currentDepts: [],
+
     highlights: false,
     artistName: ["Select an artist"],
     artistNationality: ["Select a nationality"],
-    artistNats: [],
     department: ["Select a department"],
     keyword: ''
   }
@@ -36,10 +35,16 @@ class Collection extends React.Component {
     this.loadImage()
   }
 
-  handleChangeHighlights = (ev) => {
+  handleChangeHighlights = () => {
     let highlightsVal = !this.state.highlights
     this.setState({highlights: !this.state.highlights})
     this.updateHighlights(highlightsVal)
+    this.setState({
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"],
+      keyword: ''
+    })
   }
 
   updateHighlights = (highlightsVal) => {
@@ -48,14 +53,11 @@ class Collection extends React.Component {
         return piece.isHighlight === true
       })
       this.setState({
-        filteredCol: [...filtered]
+        filteredCol: [...filtered],
       })
     } else {
       this.setState({
         filteredCol: [...this.state.collection],
-        artistName: ["Select an artist"],
-        department: ["Select a department"],
-        keyword: ''
       })
     }
   }
@@ -64,6 +66,12 @@ class Collection extends React.Component {
     let artistNameVal = ev.target.value
     this.setState({artistName: ev.target.value})
     this.updateArtist(artistNameVal)
+    this.setState({
+      highlights: false,
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"],
+      keyword: ''
+    })
   }
 
   updateArtist = (artistNameVal) => {
@@ -77,8 +85,6 @@ class Collection extends React.Component {
       })
       this.setState({
         filteredCol: [...filtered],
-        department: ["Select a department"],
-        keyword: ''
       })
     }
   }
@@ -87,6 +93,12 @@ class Collection extends React.Component {
     let departmentVal = ev.target.value
     this.setState({department: ev.target.value})
     this.updateDepartment(departmentVal)
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      keyword: ''
+    })
   }
 
   updateDepartment = (departmentVal) => {
@@ -100,8 +112,6 @@ class Collection extends React.Component {
       })
       this.setState({
         filteredCol: [...filtered],
-        artistName: ["Select an artist"],
-        keyword: ''
       })
     }
   }
@@ -110,7 +120,12 @@ class Collection extends React.Component {
     let userInput = ev.target.value.toLowerCase()
     this.setState({keyword: ev.target.value})
     this.handleKeywordSearch(userInput)
-    
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      artistNationality: ["Select a nationality"],
+      department: ["Select a department"]
+    })
   }
 
   handleKeywordSearch = (userInput) => {
@@ -124,8 +139,7 @@ class Collection extends React.Component {
     }
     this.setState({
       filteredCol: [...filtered],
-      artistName: ["Select an artist"],
-      department: ["Select a department"]
+
     })
   }
 
@@ -133,6 +147,12 @@ class Collection extends React.Component {
     let natVal = ev.target.value
     this.setState({ artistNationality: ev.target.value })
     this.updateNationality(natVal)
+    this.setState({
+      highlights: false,
+      artistName: ["Select an artist"],
+      department: ["Select a department"],
+      keyword: ''
+    })
   }
 
   updateNationality = (natVal) => {
@@ -146,8 +166,7 @@ class Collection extends React.Component {
       })
       this.setState({
         filteredCol: [...filtered],
-        artistName: ["Select an artist"],
-        department: ["Select a department"]
+
       })
     }
   }
@@ -157,6 +176,7 @@ class Collection extends React.Component {
       <div>  
         <div>
           <Filterbar 
+          highlightValue={this.state.highlights}
           artistNats={this.state.artistNats}
           showArtistNat={this.handleNatChange}
           artistNatIs={this.state.artistNationality}

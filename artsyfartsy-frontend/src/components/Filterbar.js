@@ -1,5 +1,4 @@
 import React from 'react'
-import Nationality from './Nationality'
 
 class Filterbar extends React.Component {
 
@@ -8,7 +7,7 @@ class Filterbar extends React.Component {
       <div>
         <div>
           <label>Show Highlights</label>
-          <input type='checkbox' onChange={this.props.showHighlights} />
+          <input type='checkbox' checked={this.props.highlightValue} onChange={this.props.showHighlights} />
         </div>
         <div>
           <label>Filter by Selected Artists</label>
