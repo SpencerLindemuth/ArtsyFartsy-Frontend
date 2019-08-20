@@ -11,7 +11,7 @@ class Homepage extends React.Component {
     return(
       <div>
         <h1>Welcome to Artsy-Fartsy!</h1>
-        <img src={Logo} alt='brilliant logo' />
+        <img id="logo" src={Logo} alt='brilliant logo' />
         <NavLink
           to="/gallery"
           exact
