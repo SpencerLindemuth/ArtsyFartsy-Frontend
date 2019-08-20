@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../images/logo.png'
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom' 
+import { BrowserRouter as NavLink } from 'react-router-dom' 
 
 class Homepage extends React.Component {
   state = {}

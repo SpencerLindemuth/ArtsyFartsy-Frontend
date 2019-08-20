@@ -1,7 +1,5 @@
 import React from 'react'
-import Draggable, {DraggableCore} from 'react-draggable';
-import FreeTransform from 'react-free-transform'
-
+import Draggable from 'react-draggable';
 class Gallerycard extends React.Component {
     constructor(props){
         super(props)
@@ -29,8 +27,6 @@ class Gallerycard extends React.Component {
   }
 
   render() {
-    let wall = document.querySelector("#galleryBackground")
-    let rect = wall.getBoundingClientRect()
     return (
       <Draggable grid={[5,5]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}}>
             <img src={this.props.card.primaryImageSmall} alt='' draggable="false" id={this.props.card.id}/>

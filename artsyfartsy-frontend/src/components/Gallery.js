@@ -8,6 +8,7 @@ class Gallery extends React.Component {
     imageSrc: '',
     expand: [],
     top: [],
+    scrollPosition: 0,
   }
 
   getGallery(){
@@ -115,6 +116,9 @@ class Gallery extends React.Component {
   componentDidMount() {
     this.getGallery()
     this.loadImage()
+  }
+
+  componentWillUnmount = () => {
   }
 
 }

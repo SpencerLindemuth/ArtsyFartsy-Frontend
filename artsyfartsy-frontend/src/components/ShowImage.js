@@ -1,4 +1,5 @@
 import React from 'react'
+import backArrow from '../images/backArrow.png'
 
 export default class ShowImg extends React.Component {
     constructor(props){
@@ -7,7 +8,8 @@ export default class ShowImg extends React.Component {
         this.state = {
             piece: {},
             inGallery: false,
-            userGallery: []
+            userGallery: [],
+            goBack: true
         }
     }
 
@@ -69,19 +71,22 @@ export default class ShowImg extends React.Component {
 
     render(){
         return (
-            <div className="showPage">
-                <img className="showImage" src={this.state.piece.primaryImage} />
-                <div className="showDetails">
-                    <div id="showTitle">{this.state.piece.title}</div>
-                    <div id="showArtist">{` - ${this.state.piece.artistDisplayName}`}</div>
-                    <button className="showButton"onClick={this.handleAdd}>{this.state.inGallery ? "Remove from Gallery" : "Add to Gallery"}</button>
-                    <div className="fineDetails">
-                        <p>{this.state.piece.medium ? `Medium : ${this.state.piece.medium}`: null}</p>
-                        <p>{this.state.piece.dimensions ? `Dimensions : ${this.state.piece.dimensions}`: null}</p>
-                        <p>{this.state.piece.medium ? `Department : ${this.state.piece.department}`: null}</p>
-                        <p>{this.state.piece.classification ? `Classification : ${this.state.piece.classification}`: null}</p>
-                        <p>{this.state.piece.repository ? `On display at : ${this.state.piece.repository}`: null}</p>
+            <div>
+                <div id="arrowcontainer" onClick={() => this.props.history.goBack()}><img id="backarrow" src={backArrow} alt="back arrow"/></div>
+                <div className="showPage">
+                        <img className="showImage" src={this.state.piece.primaryImage} alt="piece" />
+                    <div className="showDetails">
+                        <div id="showTitle">{this.state.piece.title}</div>
+                        <div id="showArtist">{` - ${this.state.piece.artistDisplayName}`}</div>
+                        <button className="showButton"onClick={this.handleAdd}>{this.state.inGallery ? "Remove from Gallery" : "Add to Gallery"}</button>
+                        <div className="fineDetails">
+                            <p>{this.state.piece.medium ? `Medium : ${this.state.piece.medium}`: null}</p>
+                            <p>{this.state.piece.dimensions ? `Dimensions : ${this.state.piece.dimensions}`: null}</p>
+                            <p>{this.state.piece.medium ? `Department : ${this.state.piece.department}`: null}</p>
+                            <p>{this.state.piece.classification ? `Classification : ${this.state.piece.classification}`: null}</p>
+                            <p>{this.state.piece.repository ? `On display at : ${this.state.piece.repository}`: null}</p>
 
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,8 @@ import './App.css';
 import Homepage from './components/Homepage'
 import Navbar from './components/Navbar'
 import Gallery from './components/Gallery'
-import Expand from './components/Expand'
 import Collection from './components/Collection'
-import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ShowImg from './components/ShowImage';
 
 

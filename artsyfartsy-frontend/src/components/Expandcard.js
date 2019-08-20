@@ -1,5 +1,4 @@
 import React from 'react'
-import ShowImage from './ShowImage'
 
 class Expandcard extends React.Component {
   state = {
@@ -11,7 +10,7 @@ class Expandcard extends React.Component {
   }
   render() {
     return (
-          <div className="explorecard" onClick={this.clickHandler} piece={this.props.card} className='explorecard'>
+          <div className="explorecard" onClick={this.clickHandler} >
           <img src={this.props.card.primaryImageSmall} alt='' />
             <p id="exploreArtist">
               {this.props.card.artistDisplayName}
