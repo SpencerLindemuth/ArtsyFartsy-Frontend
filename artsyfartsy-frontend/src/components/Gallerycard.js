@@ -26,10 +26,38 @@ class Gallerycard extends React.Component {
     localStorage.setItem(`yCord${this.props.card.id}/${this.props.userId}`, (rect.y + window.scrollY - offTop))
   }
 
+  handleMouseEnter = (ev) => {
+    let button = document.getElementById(`delete-${this.props.card.id}`)
+    button.className = "deletebutton"
+  }
+
+  handleMouseLeave = (ev) => {
+    let button = document.getElementById(`delete-${this.props.card.id}`)
+    if(ev.target !== button){
+      button.className = "hidden"
+    }
+  }
+
+  handleButtonEnter = (ev) => {
+    ev.target.className = "deletebutton"
+    let img = document.getElementById(this.props.card.id)
+    img.style.opacity = .8
+  }
+
+  handleButtonLeave = (ev) => {
+    ev.target.className = "hidden"
+    let img = document.getElementById(this.props.card.id)
+    img.style = null
+  }
+
+
   render() {
     return (
       <Draggable grid={[5,5]} onStop={this.saveCoords} defaultPosition={{x: this.state.xCord, y: this.state.yCord}}>
-            <img src={this.props.card.primaryImageSmall} alt='' draggable="false" id={this.props.card.id}/>
+          <div>
+            <button id={`delete-${this.props.card.id}`} className="hidden" onClick={() => this.props.removeFromGallery(this.props.card)} onMouseEnter={this.handleButtonEnter} onMouseLeave={this.handleButtonLeave}>X</button>
+            <img src={this.props.card.primaryImageSmall} alt='' draggable="false" id={this.props.card.id} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}/>
+          </div>
         </Draggable>
     );
   }

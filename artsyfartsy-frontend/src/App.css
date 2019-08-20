@@ -106,12 +106,15 @@
 }
 
 .galleryWall img{
+  z-index: 0;
   position: absolute;
   max-width: 30vh;
 }
 
 .galleryWall img:hover{
   cursor: move;
+  opacity: .8;
+
 }
 
 #recommended{
@@ -184,4 +187,24 @@
   font-family: 'Julius Sans One', sans-serif;
   margin-top: 6%;
   font-size: 1.25em;
+}
+
+.hidden {
+  display: none;
+}
+
+button.deletebutton {
+  cursor: pointer;
+  z-index: 1;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 1.5em;
+  border-width: 1px;
+  color: white;
+  opacity: 100;
+  background-color: red;
+  border-radius: 1000px;
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -10px;
 }

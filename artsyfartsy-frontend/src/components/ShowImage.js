@@ -51,6 +51,7 @@ export default class ShowImg extends React.Component {
             this.setState({
                 inGallery: false
             })
+            this.removeFromGallery()
         }
     }
 
@@ -66,6 +67,17 @@ export default class ShowImg extends React.Component {
         } else {
           console.log('You have enough Old Masters.')
         }
+      }
+
+      removeFromGallery = () => {
+          fetch("http://localhost:3000/users", {
+              method: "DELETE",
+              headers: {"content-type" : "application/json"},
+              body: JSON.stringify({
+                  user_id: 3,
+                  piece_id: this.state.piece.id
+              })
+          })
       }
 
 
