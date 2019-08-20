@@ -89,9 +89,22 @@ class Gallery extends React.Component {
     })
   }
 
-  showRemoveX(){
-    
+  removeFromGallery = (piece) => {
+    fetch("http://localhost:3000/users", {
+        method: "DELETE",
+        headers: {"content-type" : "application/json"},
+        body: JSON.stringify({
+            user_id: 3,
+            piece_id: piece.id
+        })
+    }).then(res => {
+      let temp = this.state.top.filter(item => item.id !== piece.id)
+      this.setState({
+        top: [...temp]
+      })
+    })
   }
+
   
 
   render() {
@@ -103,7 +116,7 @@ class Gallery extends React.Component {
         <div id="galleryBackground">
           <div className="galleryWall">
             {this.state.top.map(pic => {
-              return <Gallerycard card={pic} key={pic.id} userId={3} handleClick={() => null} removeCard={this.showRemoveX} />
+              return <Gallerycard card={pic} key={pic.id} userId={3} handleClick={() => null} removeFromGallery={this.removeFromGallery} />
             })}
           </div>
         </div>
