@@ -14,7 +14,7 @@ class Collection extends React.Component {
     department: ["Select a department"],
     keyword: '',
 
-    noResultsCard: {
+    noResultsCard: [{
       "id": '0000',
       "isHighlight": false,
       "primaryImage": "Your search returned no results",
@@ -33,7 +33,7 @@ class Collection extends React.Component {
       "tags": "[]",
       "country": null,
       "artistNationality": null
-    },
+    }],
   }
   
   loadImage = () => {
