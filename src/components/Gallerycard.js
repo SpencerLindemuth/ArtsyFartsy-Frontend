@@ -17,7 +17,6 @@ class Gallerycard extends React.Component {
     let box = wall.getBoundingClientRect()
     let offLeft = box.x + window.scrollX
     let offTop = box.y + window.scrollY
-    console.log(offLeft)
     this.setState=({
         xCord: rect.x + window.scrollX - offLeft,
         yCord: rect.y + window.scrollY - offTop

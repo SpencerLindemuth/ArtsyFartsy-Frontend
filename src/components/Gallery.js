@@ -15,7 +15,6 @@ class Gallery extends React.Component {
 
   getUser = () => {
     let user = localStorage.getItem("user")
-    console.log(user)
     if(user !== null){
       this.setState({
         userId: user
@@ -94,8 +93,6 @@ class Gallery extends React.Component {
           expand: [...pieces]
         })
       })
-    } else {
-      console.log('You have enough Old Masters.')
     }
   }
 

@@ -21,8 +21,6 @@ export default class ShowImg extends React.Component {
         let user = localStorage.getItem("user")
         try{
             let uncoded = jwt_decode(token)
-            console.log("uncoded ", uncoded)
-            console.log("user ", user)
             if(parseInt(user) === uncoded.id){
                 this.setState({
                     loggedIn: true
@@ -50,7 +48,6 @@ export default class ShowImg extends React.Component {
         fetch(`https://artsy-fartsy-backend.herokuapp.com/users/${user}/gallery`)
         .then(res => {
             if(res.status !== 200){
-                console.log("Please Login")
                 return null
             }else{
                 return res.json()
@@ -95,10 +92,6 @@ export default class ShowImg extends React.Component {
             headers: {"content-type": "application/json"},
             body: JSON.stringify({user_id: localStorage.getItem('user'), piece: this.state.piece})
         })
-        //   .then(res => res.json())
-        //   .then(data => data.id ? console.log("added") : console.log("there was an error processing the request"))
-        } else {
-        console.log('You have enough Old Masters.')
         }
     }
 
