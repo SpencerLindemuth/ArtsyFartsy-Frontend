@@ -4,6 +4,7 @@ import Expand from './Expand'
 
 
 class Gallery extends React.Component {
+  
   state = {
     imageSrc: '',
     expand: [],
@@ -14,7 +15,8 @@ class Gallery extends React.Component {
 
   getUser = () => {
     let user = localStorage.getItem("user")
-    if(user){
+    console.log(user)
+    if(user !== null){
       this.setState({
         userId: user
       })
@@ -29,9 +31,13 @@ class Gallery extends React.Component {
     fetch(`http://localhost:3000/users/${user}/gallery`)
     .then(res => res.json())
     .then(data => {
+      if(data.status){
+        this.props.history.push('/')
+      }else{
       this.setState({
         top: [...data]
       })
+    }
     })
   }
   
@@ -122,9 +128,9 @@ class Gallery extends React.Component {
   
 
   render() {
-    if(this.state.expand.length < 8){
-      this.loadImage()
-    }
+    // if(this.state.expand.length < 8){
+    //   this.loadImage()
+    // }
     return(
       <div className="page">
         <div id="galleryBackground">
@@ -144,9 +150,6 @@ class Gallery extends React.Component {
     this.getUser()
     this.getGallery()
     this.loadImage()
-  }
-
-  componentWillUnmount = () => {
   }
 
 }
