@@ -251,3 +251,19 @@ button.deletebutton {
   top: -10px;
   left: -10px;
 }
+
+.filterform {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  font-size: 1.5em;
+}
+
+.filterforminput {
+
+}
+
+#keywordsearch {
+  outline: none;
+  border-width: 1px;
+  border-style: line;
+}

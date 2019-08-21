@@ -4,14 +4,16 @@ class Filterbar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='filterform'>
         <div>
           <label>Show Highlights</label>
-          <input type='checkbox' checked={this.props.highlightValue} onChange={this.props.showHighlights} />
+          <br />
+          <input className="filterforminput" type='checkbox' checked={this.props.highlightValue} onChange={this.props.showHighlights} />
         </div>
         <div>
           <label>Filter by Selected Artists</label>
-          <select value={this.props.artistNameIs} onChange={this.props.showArtist} >
+          <br />
+          <select className="filterforminput"  value={this.props.artistNameIs} onChange={this.props.showArtist} >
             <option value="Select an artist">View All</option>
             <option value="Eugène Boudin">Eugène Boudin</option>
             <option value="Caravaggio (Michelangelo Merisi)">Caravaggio - Michelangelo Merisi</option>
@@ -27,7 +29,8 @@ class Filterbar extends React.Component {
         </div>
         <div>
           <label>Filter by Department</label>
-          <select value={this.props.departmentIs} onChange={this.props.showDepartment} >
+          <br />
+          <select className="filterforminput"  value={this.props.departmentIs} onChange={this.props.showDepartment} >
             <option value="Select a department">View All</option>
             <option value="European Paintings">European Paintings</option>
             <option value="Greek and Roman Art">Greek & Roman Art</option>
@@ -36,7 +39,8 @@ class Filterbar extends React.Component {
         </div>
         <div>
           <label>Filter by Artist Nationality</label>
-          <select value={this.props.artistNatIs} onChange={this.props.showArtistNat}>
+          <br />
+          <select className="filterforminput"  value={this.props.artistNatIs} onChange={this.props.showArtistNat}>
             <option value="Select a nationality">View All</option>
             <option value="British">British</option>            
             <option value="Dutch">Dutch</option>            
@@ -49,7 +53,8 @@ class Filterbar extends React.Component {
         </div>
         <div>
           <label>Keyword Search</label>
-          <input type='text' onChange={this.props.updateKeyword} value={this.props.currentWord}/>
+          <br/>
+          <input className="filterforminput" id="keywordsearch" type='text' onChange={this.props.updateKeyword} value={this.props.currentWord}/>
         </div>
       </div>
     )
