@@ -104,6 +104,9 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistDisplayName === artistNameVal
       })
+      this.setState({
+        filteredCol: [...filtered]
+      })
     }
   }
 
