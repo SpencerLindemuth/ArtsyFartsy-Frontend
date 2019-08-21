@@ -30,7 +30,7 @@ class Filterbar extends React.Component {
           <select value={this.props.departmentIs} onChange={this.props.showDepartment} >
             <option value="Select a department">View All</option>
             <option value="European Paintings">European Paintings</option>
-            <option value="The American Wing">The American Wing</option>
+            <option value="The Robert Lehman Collection">The Robert Lehman Collection</option>
             <option value="Greek and Roman Art">Greek & Roman Art</option>
           </select>
         </div>
