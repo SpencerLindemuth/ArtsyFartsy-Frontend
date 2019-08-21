@@ -16,7 +16,7 @@ class Collection extends React.Component {
   }
   
   loadImage = () => {
-    fetch('http://localhost:3000/pieces').then(res => res.json()).then(data => {
+    fetch('https://artsy-fartsy-backend.herokuapp.com/pieces').then(res => res.json()).then(data => {
       let colImgs = []
       for (let index = 0; index < data.length; index++) {
         const element = data[index];

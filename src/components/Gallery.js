@@ -28,7 +28,7 @@ class Gallery extends React.Component {
 
   getGallery(){
     let user = localStorage.getItem("user")
-    fetch(`http://localhost:3000/users/${user}/gallery`)
+    fetch(`https://artsy-fartsy-backend.herokuapp.com/users/${user}/gallery`)
     .then(res => res.json())
     .then(data => {
       if(data.status){
@@ -42,7 +42,7 @@ class Gallery extends React.Component {
   }
   
   loadImage = () => {
-    fetch('http://localhost:3000/pieces').then(res => res.json()).then(data => {
+    fetch('https://artsy-fartsy-backend.herokuapp.com/pieces').then(res => res.json()).then(data => {
       let ten = []
       let temp = data.filter(piece => {
         let dupe = false
@@ -83,7 +83,7 @@ class Gallery extends React.Component {
       let pieces = this.state.expand.filter((piece) => {
         return piece !== card
       })
-      fetch("http://localhost:3000/users/add", {
+      fetch("https://artsy-fartsy-backend.herokuapp.com/users/add", {
         method: "POST",
         headers: {"content-type": "application/json"},
         body: JSON.stringify({user_id: this.state.userId, piece: card})
@@ -110,7 +110,7 @@ class Gallery extends React.Component {
   }
 
   removeFromGallery = (piece) => {
-    fetch("http://localhost:3000/users", {
+    fetch("https://artsy-fartsy-backend.herokuapp.com/users", {
         method: "DELETE",
         headers: {"content-type" : "application/json"},
         body: JSON.stringify({

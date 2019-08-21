@@ -33,7 +33,7 @@ class Homepage extends React.Component {
       username: "",
       password: ""
     })
-    fetch("http://localhost:3000/tokens", {
+    fetch("https://artsy-fartsy-backend.herokuapp.com/tokens", {
       method: "POST",
       headers: {"content-type" : "application/json"},
       body: JSON.stringify({
@@ -111,7 +111,7 @@ class Homepage extends React.Component {
       ev.target[2].placeholder = "Passwords don't match"
     }
     else{
-      fetch("http://localhost:3000/users", {
+      fetch("https://artsy-fartsy-backend.herokuapp.com/users", {
         method: "POST",
         headers: {"content-type": "application/json"},
         body: JSON.stringify({

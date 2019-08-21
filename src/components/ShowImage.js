@@ -35,7 +35,7 @@ export default class ShowImg extends React.Component {
     }
 
     getPiece = () => {
-        fetch(`http://localhost:3000/pieces/${this.params.id}`)
+        fetch(`https://artsy-fartsy-backend.herokuapp.com/pieces/${this.params.id}`)
         .then(res => res.json())
         .then(data => {
             this.setState({
@@ -47,7 +47,7 @@ export default class ShowImg extends React.Component {
 
     getInGallery = (piece) => {
         let user = localStorage.getItem('user')
-        fetch(`http://localhost:3000/users/${user}/gallery`)
+        fetch(`https://artsy-fartsy-backend.herokuapp.com/users/${user}/gallery`)
         .then(res => {
             if(res.status !== 200){
                 console.log("Please Login")
@@ -90,28 +90,28 @@ export default class ShowImg extends React.Component {
 
     addToGallery = () => {
         if (this.state.userGallery.length < 12){
-          fetch("http://localhost:3000/users/add", {
+            fetch("https://artsy-fartsy-backend.herokuapp.com/users/add", {
             method: "POST",
             headers: {"content-type": "application/json"},
             body: JSON.stringify({user_id: localStorage.getItem('user'), piece: this.state.piece})
-          })
+        })
         //   .then(res => res.json())
         //   .then(data => data.id ? console.log("added") : console.log("there was an error processing the request"))
         } else {
-          console.log('You have enough Old Masters.')
+        console.log('You have enough Old Masters.')
         }
-      }
+    }
 
-      removeFromGallery = () => {
-          fetch("http://localhost:3000/users", {
-              method: "DELETE",
-              headers: {"content-type" : "application/json"},
-              body: JSON.stringify({
-                  user_id: localStorage.getItem('user'),
-                  piece_id: this.state.piece.id
-              })
-          })
-      }
+    removeFromGallery = () => {
+        fetch("https://artsy-fartsy-backend.herokuapp.com/users", {
+            method: "DELETE",
+            headers: {"content-type" : "application/json"},
+            body: JSON.stringify({
+                user_id: localStorage.getItem('user'),
+                piece_id: this.state.piece.id
+            })
+        })
+    }
 
 
     render(){
