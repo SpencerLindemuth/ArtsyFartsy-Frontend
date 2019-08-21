@@ -65,7 +65,10 @@ class Homepage extends React.Component {
   }
 
   createUserForm = () => {
-    this.setState({login: false})
+    this.setState({
+      login: false,
+      createUsername: this.state.username,
+      createPassword: this.state.password})
   }
 
   handleCreateUsernameChange = (ev) => {
