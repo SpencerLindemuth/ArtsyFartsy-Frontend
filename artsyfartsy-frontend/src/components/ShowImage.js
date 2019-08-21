@@ -1,5 +1,6 @@
 import React from 'react'
 import backArrow from '../images/backArrow.png'
+import jwt_decode from 'jwt-decode'
 
 export default class ShowImg extends React.Component {
     constructor(props){
@@ -9,7 +10,27 @@ export default class ShowImg extends React.Component {
             piece: {},
             inGallery: false,
             userGallery: [],
-            goBack: true
+            goBack: true,
+            user: null,
+            loggedIn: false
+        }
+    }
+
+    getLoggedIn = () => {
+        let token = localStorage.getItem("jwt")
+        let user = localStorage.getItem("user")
+        try{
+            let uncoded = jwt_decode(token)
+            console.log("uncoded ", uncoded)
+            console.log("user ", user)
+            if(parseInt(user) === uncoded.id){
+                this.setState({
+                    loggedIn: true
+                })
+            }
+        }
+        catch {
+
         }
     }
 
@@ -25,23 +46,35 @@ export default class ShowImg extends React.Component {
     }
 
     getInGallery = (piece) => {
-        fetch(`http://localhost:3000/users/${3}/gallery`)
-        .then(res => res.json())
+        let user = localStorage.getItem('user')
+        fetch(`http://localhost:3000/users/${user}/gallery`)
+        .then(res => {
+            if(res.status !== 200){
+                console.log("Please Login")
+                return null
+            }else{
+                return res.json()
+            }})
         .then(data => {
-            this.setState({userGallery: [...data]})
-            let temp = data.filter(item => {
-                return item.id === piece.id
-            })
-            if(temp.length > 0){
-                this.setState({
-                    inGallery: true
+            if(data !== null){
+                this.setState({userGallery: [...data]})
+                let temp = data.filter(item => {
+                    return item.id === piece.id
                 })
+                if(temp.length > 0){
+                    this.setState({
+                        inGallery: true
+                    })
+                }
             }
         })
     }
 
     handleAdd = () => {
-        if(!this.state.inGallery){
+        if(!this.state.loggedIn){
+            this.props.history.push('/')
+        }
+        else if(!this.state.inGallery){
             this.setState({
                 inGallery: true
             })
@@ -60,7 +93,7 @@ export default class ShowImg extends React.Component {
           fetch("http://localhost:3000/users/add", {
             method: "POST",
             headers: {"content-type": "application/json"},
-            body: JSON.stringify({user_id: 3, piece: this.state.piece})
+            body: JSON.stringify({user_id: localStorage.getItem('user'), piece: this.state.piece})
           })
         //   .then(res => res.json())
         //   .then(data => data.id ? console.log("added") : console.log("there was an error processing the request"))
@@ -74,7 +107,7 @@ export default class ShowImg extends React.Component {
               method: "DELETE",
               headers: {"content-type" : "application/json"},
               body: JSON.stringify({
-                  user_id: 3,
+                  user_id: localStorage.getItem('user'),
                   piece_id: this.state.piece.id
               })
           })
@@ -106,6 +139,7 @@ export default class ShowImg extends React.Component {
     }
 
     componentDidMount = () => {
+        this.getLoggedIn()
         this.getPiece()
     }
 }
