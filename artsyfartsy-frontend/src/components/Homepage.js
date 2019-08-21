@@ -152,29 +152,33 @@ class Homepage extends React.Component {
 
   render() {
     return(
-      <div>
-        {this.state.login ? 
-        <form onSubmit={this.handleSumbit} className="loginform">
-          <input type="text" value={this.state.username} placeholder="Username" onChange={this.handleUsernameChange} />
-          <br/>
-          <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange}/>
-          <br/>
-          <input type="submit" className="formbutton" value="Log In" />
-          <br/>
-          <input type="button" className="formbutton" onClick={this.createUserForm} value="Create User"/>
-        </form>
-        :
-        <form className="loginform" onSubmit={this.submitCreateUser}>
-          <input type="text" value={this.state.createUsername} placeholder="Username" onChange={this.handleCreateUsernameChange} />
-          <br/>
-          <input type="password" value={this.state.createPassword} placeholder="Password" onChange={this.handleCreatePasswordChange}/>
-          <br/>
-          <input type="password" value={this.state.confirmPassword} placeholder="Confirm Password" onChange={this.handleConfirmCreatePasswordChange}/>
-          <br/>
-          <input type="submit" className="formbutton" value="Create User"/>
-        </form>
-        }
-        <img id="logo" src={Logo} alt='brilliant logo' />
+      <div id="homepage">
+        <div id="formdiv">
+          {this.state.login ? 
+          <form onSubmit={this.handleSumbit} className="loginform">
+            <input type="text" value={this.state.username} placeholder="Username" onChange={this.handleUsernameChange} />
+            <br/>
+            <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange}/>
+            <br/>
+            <input type="submit" className="formbutton" value="Log In" />
+            <br/>
+            <input type="button" className="formbutton" onClick={this.createUserForm} value="Create User"/>
+          </form>
+          :
+          <form className="loginform" onSubmit={this.submitCreateUser}>
+            <input type="text" value={this.state.createUsername} placeholder="Username" onChange={this.handleCreateUsernameChange} />
+            <br/>
+            <input type="password" value={this.state.createPassword} placeholder="Password" onChange={this.handleCreatePasswordChange}/>
+            <br/>
+            <input type="password" value={this.state.confirmPassword} placeholder="Confirm Password" onChange={this.handleConfirmCreatePasswordChange}/>
+            <br/>
+            <input type="submit" className="formbutton" value="Create User"/>
+            <br/>
+            <input type="button" className="formbutton" value="Back to Login" onClick={() => this.setState({login: true})}/>
+          </form>
+          }
+          <img id="logo" src={Logo} alt='brilliant logo' />
+        </div>
       </div>
     )
   }
