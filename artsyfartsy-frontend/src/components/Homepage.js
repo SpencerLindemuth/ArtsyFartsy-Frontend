@@ -28,6 +28,7 @@ class Homepage extends React.Component {
 
   handleSumbit = (ev) => {
     ev.preventDefault()
+    let target = ev.target
     this.setState({
       username: "",
       password: ""
@@ -41,14 +42,19 @@ class Homepage extends React.Component {
       })
     }).then(res => {
       if(res.status !== 200){
-        console.log("Failed to login")
-        return {status: "made up"}
+        return {jwt: null}
       }else{
         return res.json()
     }})
     .then(data => {
-      if(data.status){
-        console.log("error")
+      if(data.jwt === null){
+        target[1].style.borderColor = "red"
+        target[1].placeholder = "Invalid Username or Password"
+        this.setState({
+          username: "",
+          password: ""
+          })
+        setTimeout(() => target[1].style.borderColor = "#F0F0F0", 1500)
       }else{
         let user = jwt_decode(data.jwt)
         localStorage.setItem('jwt', data.jwt)
