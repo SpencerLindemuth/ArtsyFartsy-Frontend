@@ -37,7 +37,7 @@ class Collection extends React.Component {
   }
   
   loadImage = () => {
-    fetch('https://artsy-fartsy-backend.herokuapp.com/pieces').then(res => res.json()).then(data => {
+    fetch('https://artsy-fartsy-backend.herokuapp.com/explore').then(res => res.json()).then(data => {
       let colImgs = []
       for (let index = 0; index < data.length; index++) {
         const element = data[index];
@@ -161,10 +161,15 @@ class Collection extends React.Component {
           filtered.push(piece)
       }
     }
-    this.setState({
-      filteredCol: [...filtered],
-
-    })
+    if (filtered.length >= 1) {
+      this.setState({
+        filteredCol: [...filtered]
+      })
+    } else {
+      this.setState({
+        filteredCol: [...this.state.noResultsCard]
+      })
+    }
   }
 
   handleNatChange = (ev) => {
@@ -188,10 +193,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistNationality === natVal
       })
-      this.setState({
-        filteredCol: [...filtered],
-
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 
