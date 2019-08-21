@@ -104,15 +104,6 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistDisplayName === artistNameVal
       })
-      if (filtered.length >= 1) {
-        this.setState({
-        filteredCol: [...filtered],
-      })
-    } else {
-      this.setState({
-        filteredCol: [...this.state.noResultsCard]
-      })
-    }
     }
   }
 
@@ -137,9 +128,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.department === departmentVal
       })
-      this.setState({
-        filteredCol: [...filtered],
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 
