@@ -12,7 +12,28 @@ class Collection extends React.Component {
     artistName: ["Select an artist"],
     artistNationality: ["Select a nationality"],
     department: ["Select a department"],
-    keyword: ''
+    keyword: '',
+
+    noResultsCard: {
+      "id": '0000',
+      "isHighlight": false,
+      "primaryImage": "Your search returned no results",
+      "primaryImageSmall": "",
+      "department": null,
+      "objectName": null,
+      "title": "Your search returned no results",
+      "culture": "",
+      "artistDisplayName": null,
+      "objectDate": null,
+      "medium": null,
+      "dimensions": null,
+      "classification": null,
+      "repository": "Metropolitan Museum of Art, New York, NY",
+      "objectURL": null,
+      "tags": "[]",
+      "country": null,
+      "artistNationality": null
+    },
   }
   
   loadImage = () => {
@@ -83,9 +104,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistDisplayName === artistNameVal
       })
-      this.setState({
+      if (filtered.length >= 1) {
+        this.setState({
         filteredCol: [...filtered],
       })
+    } else {
+      this.setState({
+        filteredCol: [...this.state.noResultsCard]
+      })
+    }
     }
   }
 
