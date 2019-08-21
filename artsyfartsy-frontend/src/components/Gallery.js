@@ -9,24 +9,10 @@ class Gallery extends React.Component {
     expand: [],
     top: [],
     scrollPosition: 0,
-    userId: null
-  }
-
-  getUser = () => {
-    let user = localStorage.getItem("user")
-    if(user){
-      this.setState({
-        userId: user
-      })
-    }
-    else{
-      this.props.history.push('/')
-    }
   }
 
   getGallery(){
-    let user = localStorage.getItem("user")
-    fetch(`http://localhost:3000/users/${user}/gallery`)
+    fetch(`http://localhost:3000/users/${3}/gallery`)
     .then(res => res.json())
     .then(data => {
       this.setState({
@@ -80,7 +66,7 @@ class Gallery extends React.Component {
       fetch("http://localhost:3000/users/add", {
         method: "POST",
         headers: {"content-type": "application/json"},
-        body: JSON.stringify({user_id: this.state.userId, piece: card})
+        body: JSON.stringify({user_id: 3, piece: card})
       })
       .then(res => {
         this.setState({
@@ -108,7 +94,7 @@ class Gallery extends React.Component {
         method: "DELETE",
         headers: {"content-type" : "application/json"},
         body: JSON.stringify({
-            user_id: this.state.userId,
+            user_id: 3,
             piece_id: piece.id
         })
     }).then(res => {
@@ -130,7 +116,7 @@ class Gallery extends React.Component {
         <div id="galleryBackground">
           <div className="galleryWall">
             {this.state.top.map(pic => {
-              return <Gallerycard card={pic} key={pic.id} userId={this.state.userId} handleClick={() => null} removeFromGallery={this.removeFromGallery} />
+              return <Gallerycard card={pic} key={pic.id} userId={3} handleClick={() => null} removeFromGallery={this.removeFromGallery} />
             })}
           </div>
         </div>
@@ -141,7 +127,6 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    this.getUser()
     this.getGallery()
     this.loadImage()
   }
