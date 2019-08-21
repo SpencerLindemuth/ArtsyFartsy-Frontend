@@ -12,9 +12,31 @@ class Collection extends React.Component {
     artistName: ["Select an artist"],
     artistNationality: ["Select a nationality"],
     department: ["Select a department"],
-    keyword: ''
+    keyword: '',
+    noResultsCard: [{
+      "id": '0000',
+      "isHighlight": false,
+      "primaryImage": "Your search criterion returned no results",
+      "primaryImageSmall": null,
+      "department": null,
+      "objectName": null,
+      "title": "Your search criterion returned no results",
+      "culture": null,
+      "artistDisplayName": null,
+      "objectDate": null,
+      "medium": null,
+      "dimensions": null,
+      "classification": null,
+      "repository": "Metropolitan Museum of Art, New York, NY",
+      "objectURL": null,
+      "tags": "[]",
+      "country": null,
+      "artistNationality": null
+    }]
   }
   
+
+
   loadImage = () => {
     fetch('http://localhost:3000/pieces').then(res => res.json()).then(data => {
       let colImgs = []
@@ -52,13 +74,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.isHighlight === true
       })
-      this.setState({
-        filteredCol: [...filtered],
-      })
-    } else {
-      this.setState({
-        filteredCol: [...this.state.collection],
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 
@@ -83,9 +107,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistDisplayName === artistNameVal
       })
-      this.setState({
-        filteredCol: [...filtered],
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 
@@ -110,9 +140,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.department === departmentVal
       })
-      this.setState({
-        filteredCol: [...filtered],
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 
@@ -137,10 +173,15 @@ class Collection extends React.Component {
           filtered.push(piece)
       }
     }
-    this.setState({
-      filteredCol: [...filtered],
-
-    })
+    if (filtered.length >= 1) {
+      this.setState({
+        filteredCol: [...filtered]
+      })
+    } else {
+      this.setState({
+        filteredCol: [...this.state.noResultsCard]
+      })
+    }
   }
 
   handleNatChange = (ev) => {
@@ -164,10 +205,15 @@ class Collection extends React.Component {
       let filtered = this.state.collection.filter((piece) => {
         return piece.artistNationality === natVal
       })
-      this.setState({
-        filteredCol: [...filtered],
-
-      })
+      if (filtered.length >= 1) {
+        this.setState({
+          filteredCol: [...filtered]
+        })
+      } else {
+        this.setState({
+          filteredCol: [...this.state.noResultsCard]
+        })
+      }
     }
   }
 

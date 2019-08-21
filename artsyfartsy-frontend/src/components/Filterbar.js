@@ -23,6 +23,8 @@ class Filterbar extends React.Component {
             <option value="Henri de Toulouse-Lautrec">Henri de Toulouse-Lautrec</option>
             <option value="Vincent van Gogh">Vincent van Gogh</option>
             <option value="Francisco de Zurbarán">Francisco de Zurbarán</option>
+            <option value="">No artist listed</option>
+
           </select>
         </div>
         <div>
@@ -30,8 +32,20 @@ class Filterbar extends React.Component {
           <select value={this.props.departmentIs} onChange={this.props.showDepartment} >
             <option value="Select a department">View All</option>
             <option value="European Paintings">European Paintings</option>
-            <option value="The American Wing">The American Wing</option>
             <option value="Greek and Roman Art">Greek & Roman Art</option>
+            <option value="American Decorative Arts">American Decorative Arts</option>
+            <option value="Ancient Near Eastern Art">Ancient Near Eastern Art</option>
+            <option value="Arts of Africa, Oceania, and the Americas">Arts of Africa, Oceania, & the Americas</option>
+            <option value="Arms and Armor">Arms and Armor</option>
+            <option value="Asian Art">Asian Art</option>
+            <option value="Drawings and Prints">Drawings & Prints</option>
+            <option value="Egyptian Art">Egyptian Art</option>
+            <option value="European Sculpture and Decorative Arts">European Sculpture & Decorative Arts</option>
+            <option value="Islamic Art">Islamic Art</option>
+            <option value="Medieval Art">Medieval Art</option>
+            <option value="Musical Instruments">Musical Instruments</option>
+            <option value="Photographs">Photographs</option>
+            <option value="Modern Art">Modern Art</option>
           </select>
         </div>
         <div>
