@@ -16,4 +16,4 @@ Click an image to see more details and add it to your gallery. After adding retu
 
 See Claire's github repository here: <a href="https://github.com/cthomasw"> Claire Wilbert </a>
 
-See the backend code here: https://github.com/spencerlindemuth/artsy-fartsy-backend
+See the backend code here: https://github.com/SpencerLindemuth/ArtsyFartsy-Backend
